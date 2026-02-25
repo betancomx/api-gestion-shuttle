@@ -6,5 +6,7 @@ public record ChoferResponseDto(
         String apellidoPat,
         String apellidoMat,
         String licencia,
-        String telefono
+        String telefono,
+        String estado,
+        String fechaRegistro
 ) { };

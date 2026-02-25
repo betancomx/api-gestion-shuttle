@@ -1,22 +1,23 @@
 package mx.jbs.java.arq.la.api_gestion_shuttle.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Table(name = "TBL_CHOFER")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChoferEntity {
 
     @Id
-    @Column(name = "CHOFER_ID")
+    @Column(name = "ID_CHOFER")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqChofer")
     @SequenceGenerator(name = "seqChofer", sequenceName = "SEQ_CHOFER", allocationSize = 1)
     private Long id;
@@ -46,5 +47,13 @@ public class ChoferEntity {
     private void prePersist() {
         fechaRegistro = LocalDateTime.now();
         estado = "AC";
+    }
+
+    public ChoferEntity(String nombre, String apellidoPat, String apellidoMat, String licencia, String telefono) {
+        this.nombre = nombre;
+        this.apellidoPat = apellidoPat;
+        this.apellidoMat = apellidoMat;
+        this.licencia = licencia;
+        this.telefono = telefono;
     }
 }
